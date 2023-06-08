@@ -45,5 +45,6 @@ class LinearSearch:
                 # NOTE: The non-optimal search would go to the end of the list and not break early if the value is found!
                 return
         # If value does not exist (NOTE: You can also return False.)
+        print("Value does not exist in list!")
         print("Linear Search complete...")
-        return -1
+        return
