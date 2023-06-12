@@ -12,6 +12,9 @@ from typing import List, Union
 # -------------------------------------------------------------------------------------------------------------------- #
 
 
+# Insertion Sort Algorithm
+
+
 class InsertionSort:
     def __init__(self, input_list: List[Union[float, int]], type_: str):
         """This initialises general values which will be used repeatedly in the class."""
@@ -39,33 +42,17 @@ class InsertionSort:
         if self.check_list():
             print("Returning original list:")
             return self.original_list
-        # Set static pointer
+        # Set iterable pointer
         print("Initiate Insertion Sort... \n")
         for i in range(1, len(self.modify_list)):
             print(f"- Iteration {i-1}: {self.modify_list} \n")
-            # Set variable pointer
-            pointer = i - 1
-            # Check up until the first index
-            while pointer >= 0:
-                # Perform insertion check
-                if eval(
-                    f"{self.modify_list[pointer]} {self.type_} {self.modify_list[i]}"
-                ):
-                    # Apply swap
-                    self.modify_list[i], self.modify_list[pointer] = (
-                        self.modify_list[pointer],
-                        self.modify_list[i],
-                    )
-                    # NOTE: This boolean is not needed but helps reduce number of swap checks!
-                    swap = True
-                else:
-                    # NOTE: This boolean is not needed but helps reduce number of swap checks!
-                    swap = False
-                # Decrement static and variable pointer to check through entire list for any potential swaps
-                pointer -= 1
-                i -= 1
-                # If we no longer swap after the first swap instance, we have found the correct position!
-                if swap is False:
-                    break
+            # Set variable pointer to current index
+            j = i
+            # Apply swap only if pointer is not out of range and previous value is greater/less than current value
+            while j > 0 and eval(f"{self.modify_list[j-1]} {self.type_} {self.modify_list[j]}"):
+                # Apply swap
+                self.modify_list[j], self.modify_list[j-1] = self.modify_list[j-1], self.modify_list[j]
+                # Decrement variable pointer
+                j -= 1
         print(f"- Iteration {len(self.modify_list)-1}: {self.modify_list} \n")
         print("Insertion Sort complete...")
