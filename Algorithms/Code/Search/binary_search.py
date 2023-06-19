@@ -35,27 +35,20 @@ class BinarySearch:
         # Set the two pointers (as index)
         start_pointer = 0
         end_pointer = len(self.original_list)-1
-        # Store counter for complexity
-        count = 1
         # If value of start pointer is greater than value of end pointer, the value we seek cannot exist (due to ordering)
         while start_pointer <= end_pointer:
             # Set the mid pointer
             mid_pointer = (start_pointer + end_pointer) // 2
-            print(f"- Iteration {count}...")
             # If the value of the mid pointer is equal to the value we seek
             if self.original_list[mid_pointer] == self.value:
                 print(f"The value is in position: {mid_pointer}")
                 return 
             # If the value of the mid pointer is greater than the value we seek
             elif self.original_list[mid_pointer] > self.value:
-                 # Increment
-                count += 1
                 # Move start pointer
                 end_pointer = mid_pointer - 1
             # If the value of the mid pointer is less than the value we seek
             else:
-                 # Increment
-                count += 1
                 # Move end pointer
                 start_pointer = mid_pointer + 1
         print("Value does not exist in list!")
