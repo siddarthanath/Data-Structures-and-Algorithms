@@ -15,44 +15,25 @@ from typing import List, Union
 # Insertion Sort Algorithm
 
 
-class InsertionSort:
-    def __init__(self, input_list: List[Union[float, int]], type_: str):
-        """This initialises general values which will be used repeatedly in the class."""
-        self.modify_list = input_list
-        self.original_list = input_list.copy()
-        self.type_ = None if type_ not in {">", "<"} else type_
-        if self.type_ is None:
-            raise ValueError(f"Incorrect intialisation for input {type_}!")
-
-    def check_list(self):
-        """Check for edge cases for lists."""
-        # If values are all the same, then list is sorted
-        if len(set(self.original_list)) == 1:
-            return True
-        # If length of list is singular, then list is sorted
-        if len(self.original_list) == 1:
-            return True
-        # If list does not contain all integers or floats, then list cannot be sorted
-        if not all(isinstance(x, (int, float)) for x in self.original_list):
-            raise TypeError("Incorrect types in list!")
-
-    def execute(self):
-        """This performs insertion sort."""
-        # Check list compatibility
-        if self.check_list():
-            print("Returning original list:")
-            return self.original_list
-        # Set iterable pointer
-        print("Initiate Insertion Sort... \n")
-        for i in range(1, len(self.modify_list)):
-            print(f"- Iteration {i-1}: {self.modify_list} \n")
-            # Set variable pointer to current index
-            j = i
-            # Apply swap only if pointer is not out of range and previous value is greater/less than current value
-            while j > 0 and eval(f"{self.modify_list[j-1]} {self.type_} {self.modify_list[j]}"):
-                # Apply swap
-                self.modify_list[j], self.modify_list[j-1] = self.modify_list[j-1], self.modify_list[j]
-                # Decrement variable pointer
-                j -= 1
-        print(f"- Iteration {len(self.modify_list)-1}: {self.modify_list} \n")
-        print("Insertion Sort complete...")
+def insertion_sort(input_list: List[Union[float, int]]) -> List[Union[float, int]]:
+    # Set iterable pointer
+    print("Initiate Insertion Sort... \n")
+    for i in range(1, len(input_list)):
+        print(f"- Iteration {i}: {input_list} \n")
+        # Apply insert
+        insert(input_list[i], input_list, i)
+    print(f"- Iteration {i+1}: {input_list} \n")
+    print("Selection Sort complete!")
+        
+def insert(current_val: Union[float, int], input_list: List[Union[float, int]], index: int):
+    # Set iterable pointer
+    for j in range(index-1, -1, -1):
+        # Check if current value is larger than indexed value in list
+        if current_val >= input_list[j]:
+            # Apply insertion
+            input_list[j+1] = current_val
+            return
+        # Replace value (NOTE: This is similar to selection sort as a "swap".)
+        input_list[j+1] = input_list[j]
+    # If all values are being replaced, then the current value belongs at the start
+    input_list[0] = current_val
