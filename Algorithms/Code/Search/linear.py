@@ -15,7 +15,9 @@ from typing import List, Union
 # Linear Search Algorithm
 
 
-def linear_search(input_list: List[Union[float, int]], value: Union[float, int]) -> List[Union[float, int]]:
+def linear_search(
+    input_list: List[Union[float, int]], value: Union[float, int]
+) -> List[Union[float, int]]:
     # Loop through entire list to check if value exists
     print("Initiate Linear Search... \n")
     for i in range(len(input_list)):

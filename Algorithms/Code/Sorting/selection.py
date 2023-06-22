@@ -23,7 +23,7 @@ def selection_sort(input_list: List[Union[float, int]]) -> List[Union[float, int
         # Set temporary index corresponding to minimum value
         min_index = i
         # Loop through from left to right (of the list) to find the index of minimum value
-        for j in range(i+1, len(input_list)):
+        for j in range(i + 1, len(input_list)):
             # Check if values after the current iterable pointer are greater than/less than the value at minimum index (and update)
             if input_list[j] <= input_list[min_index]:
                 min_index = j
